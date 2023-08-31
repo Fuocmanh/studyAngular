@@ -1,0 +1,66 @@
+<!-- Main Content -->
+<div class="container">
+  <div class="row main-content">
+    <div
+      class="col-lg-8 col-md-8 col-sm-12 col-12 login_form d-flex justify-content-center align-items-center flex-column">
+      <div class="row mb-3">
+        <h3 class="text-center pe-none">Đăng ký</h3>
+      </div>
+      <form class="form-group">
+        <div class="row form-input-gr-custom d-flex justify-content-center align-items-center flex-lg-row flex-md-column flex-sm-column">
+          <div class="col-lg-6 col-md-12">
+            <app-input idInput="name" name="name" label="Họ & Tên" type="text"></app-input>
+          </div>
+          <div class="col-lg-6 col-md-12">
+            <app-input idInput="username" name="username" label="Tên người dùng" type="text"></app-input>
+          </div>
+          <div class="col-lg-6 col-md-12">
+            <app-input idInput="email" name="email" label="Email" type="email"></app-input>
+          </div>
+          <div class="col-lg-6 col-md-12">
+            <app-input idInput="phone" name="phone" label="Số điện thoại" type="text"></app-input>
+          </div>
+          <div class="col-lg-6 col-md-12">
+            <app-input idInput="password" name="password" label="Mật khẩu" type="password"></app-input>
+          </div>
+          <div class="col-lg-6 col-md-12">
+            <app-input idInput="confirm" name="confirm" label="Xác nhận mật khẩu" type="password"></app-input>
+          </div>
+          <div class="d-flex justify-content-between">
+            <app-input idInput="remember_me" name="remember" label="Đồng ý với điều khoản sửa dụng của Fbee"
+                       type="checkbox"></app-input>
+            <a href="login"
+               class="link-offset-2 link-offset-3-hover link-underline-dark link-underline-opacity-0 link-underline-opacity-75-hover text-dark d-lg-block"
+               style="display: none;">Đã
+              có tài khoản? Đăng nhập ngay!</a>
+          </div>
+        </div>
+        <div class="col-lg-12 d-flex justify-content-center align-items-center">
+          <app-button label="Đăng ký"></app-button>
+        </div>
+      </form>
+      <div class="row w-max-content">
+        <div class="d-flex justify-content-center align-items-center flex-column">
+          <div class="d-flex justify-content-center align-items-center w-100 mb-3">
+            <div class="border-top border-dark border-1 w-25" style="height: 0;"></div>
+            <div class="w-max-content px-2 text-center pe-none">Hoặc đăng nhập với</div>
+            <div class="border-top border-dark border-1 w-25" style="height: 0;"></div>
+          </div>
+          <app-button label="Google" tag="a" icon="assets/logo/google.png" href="login/google"></app-button>
+          <app-button label="Facebook" tag="a" icon="assets/logo/facebook.png" href="login/facebook"></app-button>
+          <div class="d-lg-none">
+            <div class="d-flex justify-content-center align-items-center w-100 mb-3">
+              <div class="border-top border-dark border-1 w-25" style="height: 0;"></div>
+              <div class="w-max-content px-2 text-center pe-none">Đã có tài khoản?</div>
+              <div class="border-top border-dark border-1 w-25" style="height: 0;"></div>
+            </div>
+            <app-button label="Đăng nhập" tag="a" href="login"></app-button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-4 m-0 p-0">
+      <img alt="register" src="assets/images/login-register.jpg" class="image-login w-100 h-100">
+    </div>
+  </div>
+</div>
