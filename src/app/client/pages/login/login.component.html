@@ -1,0 +1,42 @@
+<!-- Main Content -->
+<div class="container">
+  <div class="row main-content">
+    <div class="col-lg-6 col-md-5 m-0 p-0">
+      <img src="assets/images/login.jpg" height="100%" class="image-login">
+    </div>
+    <div class="col-lg-6 col-md-7 col-xs-12 col-sm-12 login_form d-flex justify-content-center align-items-center flex-column">
+      <div class="row mb-3">
+        <h3 class="text-center pe-none">Đăng nhập</h3>
+      </div>
+      <div class="d-flex justify-content-center align-items-center">
+        <form [formGroup]="myForm" class="form-group w-max-content">
+          <app-input idInput="email" name="email" label="Email" type="email" (valueChange)="validateEmail()"></app-input>
+          <app-input idInput="password" name="password" label="Mật khẩu" type="password"></app-input>
+          <div class="d-flex justify-content-between">
+            <app-input idInput="remember_me" name="remember" label="Ghi nhớ tôi" type="checkbox"></app-input>
+            <a href="forgot" class="link-offset-2 link-offset-3-hover link-underline-dark  link-underline-opacity-0 link-underline-opacity-75-hover text-dark">Quên mật khẩu?</a>
+          </div>
+          <app-button label="Đăng nhập"></app-button>
+        </form>
+      </div>
+      <div class="row w-max-content">
+        <div class="d-flex justify-content-center align-items-center flex-column">
+          <div class="d-flex justify-content-center align-items-center w-100 mb-3">
+            <div class="border-top border-dark border-1 w-25" style="height: 0;"></div>
+            <div class="w-max-content px-2 text-center pe-none">Hoặc đăng nhập với</div>
+            <div class="border-top border-dark border-1 w-25" style="height: 0;"></div>
+          </div>
+          <app-button label="Google" tag="a" icon="assets/logo/google.png" href="login/google"></app-button>
+          <app-button label="Facebook" tag="a" icon="assets/logo/facebook.png" href="login/facebook"></app-button>
+
+          <div class="d-flex justify-content-center align-items-center w-100 mb-3">
+            <div class="border-top border-dark border-1 w-25" style="height: 0;"></div>
+            <div class="w-max-content px-2 text-center pe-none">Chưa có tài khoản</div>
+            <div class="border-top border-dark border-1 w-25" style="height: 0;"></div>
+          </div>
+          <app-button label="Đăng ký" tag="a" href="register"></app-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
