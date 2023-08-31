@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-input',
@@ -16,8 +16,6 @@ export class InputComponent {
 
   handleKeyUp(event: KeyboardEvent) {
     const inputValue = (event.target as HTMLInputElement).value;
-    this.isInvalid = inputValue.length > 0;
-    console.log(this.isInvalid)
-    // this.valueChange.emit(inputValue)
+    this.valueChange.emit(inputValue)
   }
 }
