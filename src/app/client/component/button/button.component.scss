@@ -1,0 +1,33 @@
+.button {
+  width: 350px;
+  height: 44px;
+  border-radius: 12px;
+  background: #EBB946;
+  border: none;
+  color: #ffffff;
+
+  &:hover {
+    background: #FF9900;
+  }
+}
+
+.button-tag-a {
+  @extend .button;
+  background: #ffffff;
+  border: 1px solid #EBB946;
+  .tag-a {
+    padding: 12px 120px;
+    color: #EBB946;
+    font-weight: 500;
+  }
+  &:hover {
+    background: #EBB946;
+    border: none;
+
+    .tag-a {
+      color: #ffffff;
+    }
+  }
+}
+
+

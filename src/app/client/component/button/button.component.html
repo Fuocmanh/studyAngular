@@ -1,0 +1,2 @@
+<button *ngIf="tag==='button'" class="button mb-3" type="submit">{{label}}</button>
+<button *ngIf="tag==='a'" class="button-tag-a mb-3" type="button"><a *ngIf="tag==='a'" class="tag-a link-offset-2 link-underline-dark  link-underline-opacity-0" [href]="href"><img width="20px" src="{{icon}}"> {{label}}</a></button>
