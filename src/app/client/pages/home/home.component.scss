@@ -1,0 +1,53 @@
+@import "https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap";
+.content__shows {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  div {
+    position: relative;
+    width: 200px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0 auto;
+    &:hover {
+      img {
+        transform: scale(1.15);
+      }
+      .name {
+        transform: translatey(0);
+      }
+      .title-box {
+        transform: translatey(0);
+      }
+    }
+    .title-box {
+      content: "";
+      height: 100px;
+      position: absolute;
+      transform: translatey(50px);
+      transition: 0.3s ease;
+      left: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0), black);
+      width: 100%;
+      z-index: 1;
+    }
+    img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+      transition: 0.3s ease;
+    }
+    .name {
+      position: absolute;
+      width: 100%;
+      bottom: 10px;
+      color: #fff;
+      transform: translatey(50px);
+      padding: 10px;
+      z-index: 10;
+      transition: .3s ease;
+      cursor: default;
+    }
+  }
+}
