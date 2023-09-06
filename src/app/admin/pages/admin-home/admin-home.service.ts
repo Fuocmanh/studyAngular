@@ -6,29 +6,41 @@ import {Observable} from 'rxjs';
     providedIn: 'root'
 })
 export class AdminHomeService {
+    private urlApi: string = "http://127.0.0.1:8000/api/";
+    public method: string = 'store';
+
     constructor(private http: HttpClient) {
     }
 
-    getList(): Observable<any[]> {
-        return this.http.get<any[]>('http://localhost:3000/orders');
+    getList(module: string): Observable<any[]> {
+        return this.http.get<any[]>(this.urlApi + module);
     }
 
-    findId(itemId: number): Observable<any> {
-        return this.http.get<any>(`http://localhost:3000/orders/${itemId}`);
+    findId(module: string, itemId: number): Observable<any> {
+        return this.http.get<any>(this.urlApi + module + itemId);
     }
 
-    update(itemId: number, updatedData: any): Observable<any> {
-        return this.http.put<any>(`http://localhost:3000/orders/${itemId}`, updatedData);
+    // @ts-ignore
+    storeOrUpdate(module: string, data: any, itemId: number = null): Observable<any> | undefined {
+        let temp
+        console.log(this.method)
+        if (this.method === "store") {
+            temp = this.store(module, data)
+        } else if (this.method === "update") {
+            temp = this.update(module, itemId, data)
+        }
+        return temp
     }
 
-    searchHeroes(term: string): Observable<any> {
-        term = term.trim();
-
-        const heroesURL = `http://localhost:3000/orders/${term}`;
-        return this.http.jsonp(heroesURL, 'callback').pipe();
+    store(module: string, data: any): Observable<any> {
+        return this.http.post<any>(this.urlApi + module, data);
     }
 
-    deleteItem(itemId: number): Observable<any> {
-        return this.http.delete(`http://localhost:3000/orders/${itemId}`);
+    update(module: string, itemId: number, data: any): Observable<any> {
+        return this.http.put<any>(this.urlApi + module + itemId, data);
+    }
+
+    deleteItem(module: string, itemId: number): Observable<any> {
+        return this.http.delete(this.urlApi + module + itemId);
     }
 }

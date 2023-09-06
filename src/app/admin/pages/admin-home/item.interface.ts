@@ -1,11 +1,11 @@
 export interface ItemAdmin {
     id: number,
-    customer_name: string,
+    username: string,
     address: string,
     phone: string,
     email: string,
-    payment_method: string,
-    status: number,
+    name: string,
+    password: string,
 
     [key: string]: string | number;
 }
