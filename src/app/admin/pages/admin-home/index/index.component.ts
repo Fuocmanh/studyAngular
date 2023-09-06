@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {AdminHomeService} from "../admin-home.service";
-
+import {SweetAlertService} from "../../../../helper/sweet-alert.service";
 
 @Component({
     selector: 'app-index',
@@ -9,26 +9,24 @@ import {AdminHomeService} from "../admin-home.service";
 })
 export class IndexComponent {
     items: any[] = [];
+    protected module: string = "users/";
 
-    constructor(private adminHomeService: AdminHomeService) {
+    constructor(private adminHomeService: AdminHomeService, private sweetAlert: SweetAlertService) {
     }
 
     ngOnInit() {
-        this.adminHomeService.getList().subscribe(
+        this.adminHomeService.getList(this.module).subscribe(
             response => {
-                this.items = response;
-            },
-            error => {
-                console.log('Error:', error);
+                // @ts-ignore
+                this.items = response.data.data;
             }
         );
     }
 
     deleteItem(itemId: number) {
-// Xóa mục
-        this.adminHomeService.deleteItem(itemId).subscribe(
+        this.adminHomeService.deleteItem(this.module, itemId).subscribe(
             response => {
-                console.log('Xóa thành công');
+                this.sweetAlert.Toast.fire('Xoá thành công', '', 'success')
                 this.items = this.items.filter(item => item.id !== itemId);
             },
             error => {

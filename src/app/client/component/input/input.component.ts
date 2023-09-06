@@ -11,9 +11,9 @@ export class InputComponent {
   @Input() label: string = '';
   @Input() value: string = '';
   @Input() type: string = 'text';
+    // @ts-ignore
+    @Input() pattern: string = null;
   @Output() valueChange: EventEmitter<string> = new EventEmitter<string>
-  isInvalid: boolean = false;
-
   handleKeyUp(event: KeyboardEvent) {
     const inputValue = (event.target as HTMLInputElement).value;
     this.valueChange.emit(inputValue)

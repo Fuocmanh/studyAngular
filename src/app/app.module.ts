@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
-
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AdminRoutingModule} from "./admin/pages/admin-home/admin-routing.module";
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './client/pages/login/login.component';
@@ -15,10 +15,7 @@ import {AdminHomeComponent} from './admin/pages/admin-home/admin-home.component'
 import {NotFoundPageComponent} from './not-found-page/not-found-page.component';
 import {EditComponent} from "./admin/pages/admin-home/edit/edit.component";
 import {IndexComponent} from "./admin/pages/admin-home/index/index.component";
-import {CreateComponent} from "./admin/pages/admin-home/create/create.component";
-import {ShowComponent} from "./admin/pages/admin-home/show/show.component";
 import {CommonModule} from "@angular/common";
-import {AdminRoutingModule} from "./admin/pages/admin-home/admin-routing.module";
 
 @NgModule({
   declarations: [
@@ -27,8 +24,6 @@ import {AdminRoutingModule} from "./admin/pages/admin-home/admin-routing.module"
     HomeComponent,
     EditComponent,
     IndexComponent,
-    CreateComponent,
-    ShowComponent,
     InputComponent,
     ButtonComponent,
     HeaderComponent,
@@ -52,5 +47,4 @@ import {AdminRoutingModule} from "./admin/pages/admin-home/admin-routing.module"
   bootstrap: [AppComponent]
 })
 export class AppModule {
-
 }

@@ -36,4 +36,8 @@ export class HeaderComponent {
             href: "/admin"
         },
     ];
+
+    ngOnInit(): void {
+
+    }
 }

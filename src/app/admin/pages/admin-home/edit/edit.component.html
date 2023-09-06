@@ -1,16 +1,12 @@
 <div class="row d-flex justify-content-center my-5">
-    <ul class="w-25">
-        <h5 class="text-center mb-5">Dữ liệu nhận trong component cha</h5>
-        <li>{{item.customer_name}}</li>
-        <li>{{item.email}}</li>
-        <li>{{item.phone}}</li>
-    </ul>
     <form class="w-25">
-        <h5 class="text-center mb-5">Dữ liệu truyền từ component con sang component cha</h5>
+        <app-input idInput="username" name="username" [value]="item.username" label="Tên người dùng" (valueChange)="valueChangeTo($event,'username')"></app-input>
+        <app-input idInput="name" name="name" [value]="item.name" label="Họ & Tên" (valueChange)="valueChangeTo($event,'name')"></app-input>
+        <app-input idInput="email" name="email" [value]="item.email" label="Email" type="email" (valueChange)="valueChangeTo($event,'email')" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"></app-input>
 
-        <app-input idInput="customer_name" name="item.customer_name" [value]="item.customer_name" label="Họ & Tên" (valueChange)="valueChangeTo($event,'customer_name')"></app-input>
-        <app-input idInput="email" name="item.email" [value]="item.email" label="Email" type="email" (valueChange)="valueChangeTo($event,'email')"></app-input>
-        <app-input idInput="phone" name="item.phone" [value]="item.phone" label="Số điện thoại" (valueChange)="valueChangeTo($event,'phone')"></app-input>
-        <button class="btn btn-primary" (click)="update()">Submit</button>
+        <app-input idInput="phone" name="phone" [value]="item.phone" label="Số điện thoại" (valueChange)="valueChangeTo($event,'phone')" pattern="^[0-9]{10}$"></app-input>
+        <app-input idInput="address" name="address" [value]="item.address" label="Địa chỉ" (valueChange)="valueChangeTo($event,'address')"></app-input>
+        <app-input *ngIf="method" idInput="password" name="password" [value]="item.password " label="Mật khẩu" (valueChange)="valueChangeTo($event,'password')" type="password"></app-input>
+        <button class="btn btn-primary" (click)="storeOrUpdate()">Submit</button>
     </form>
 </div>

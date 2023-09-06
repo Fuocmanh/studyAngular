@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AdminHomeService} from "../admin-home.service";
-import {ItemAdmin} from "../item";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {ItemAdmin} from "../item.interface";
+import {DefaultItemAdmin} from "../DefaultItemAdmin";
+import {SweetAlertService} from "../../../../helper/sweet-alert.service";
 
 @Component({
     selector: 'app-edit',
@@ -11,56 +12,44 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 })
 
 export class EditComponent implements OnInit {
-    public item: ItemAdmin = {
-        id: 0,
-        customer_name: '',
-        address: '',
-        phone: '',
-        email: '',
-        payment_method: '',
-        status: 0
-    };
-    private _value: string = '';
-    editForm: FormGroup;
+    public item: ItemAdmin = new DefaultItemAdmin;
+    public routePath: string = "create";
+    private module: string = "users/";
+    // @ts-ignore
+    public method: boolean;
 
-    constructor(private adminHomeService: AdminHomeService, private route: ActivatedRoute, private formBuilder: FormBuilder, private router: Router) {
-        this.editForm = this.formBuilder.group({
-            id: [],
-            customer_name: [""],
-            address: [""],
-            phone: [""],
-            email: [""],
-            payment_method: [""],
-            status: [""]
-        });
+    constructor(private adminHomeService: AdminHomeService, private route: ActivatedRoute, private router: Router, private sweetAlert: SweetAlertService) {
     }
 
     ngOnInit() {
-        this.route.params.subscribe(params => {
-            const itemId = params['id']; // Chuyển đổi sang kiểu number nếu cần thiết
-            this.adminHomeService.findId(itemId).subscribe(
-                response => {
-                    this.item = response;
-                },
-                error => {
-                    console.log('Error:', error);
-                }
-            );
-        });
+        // @ts-ignore
+        this.method = this.routePath == this.route.snapshot.routeConfig.path
+        if (!this.method) {
+            this.adminHomeService.method = "update"
+            this.sweetAlert.msg = "Sửa"
+            this.route.params.subscribe(params => {
+                const itemId = params['id'];
+                this.adminHomeService.findId(this.module, itemId).subscribe(
+                    response => {
+                        // @ts-ignore
+                        this.item = response.data;
+                    }
+                );
+            });
+        } else {
+            this.adminHomeService.method = "store"
+            this.sweetAlert.msg = "Thêm"
+        }
     }
 
-    update() {
-        this.route.params.subscribe(params => {
-            const itemId = params['id']; // Chuyển đổi sang kiểu number nếu cần thiết
-            this.adminHomeService.update(itemId, this.item).subscribe(
-                response => {
-                    this.router.navigateByUrl('/admin');
-                },
-                error => {
-                    console.log('Error:', error);
-                }
-            );
-        });
+    storeOrUpdate() {
+        // @ts-ignore
+        this.adminHomeService.storeOrUpdate(this.module, this.item, this.item.id).subscribe(
+            response => {
+                this.sweetAlert.Toast.fire(`${this.sweetAlert.msg} thành công`, '', 'success')
+                this.router.navigateByUrl('/admin');
+            }
+        );
     }
 
     valueChangeTo(valueChange: string, name: string) {
@@ -71,4 +60,5 @@ export class EditComponent implements OnInit {
             }
         }
     }
+
 }
