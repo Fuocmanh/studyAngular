@@ -1,5 +1,12 @@
-<div [ngClass]="{'input-group': true, 'mb-3': type !== 'search', 'mb-0': type === 'search'}">
-  <input [id]="idInput" class="input-group__input" [name]="name" [type]="type" [(ngModel)]="value" (keyup)="handleKeyUp($event)"
-         [ngClass]="{'invalid_onkey': isInvalid, 'has-value': value !== ''}" required>
-  <label for="{{idInput}}" class="input-group__label w-max-content">{{label}}</label>
+<div [ngClass]="{'input-group': true, 'mb-3 d-flex justify-content-start align-items-start flex-column': type !== 'search', 'mb-0': type === 'search'}">
+    <input [id]="idInput" class="input-group__input" name="{{name}}" [type]="type" [(ngModel)]="value" (keyup)="handleKeyUp($event)" required #name="ngModel" [ngClass]="{ 'invalid': name.invalid && (name.dirty || name.touched) && type !== 'search' && value }" [pattern]="pattern">
+    <label [for]="idInput" class="input-group__label w-max-content">{{label}}</label>
+    <div *ngIf="name.invalid && (name.dirty || name.touched || value) && type!=='search'">
+        <span *ngIf="name.errors?.['required']" class="text-danger">
+          {{label}} không được để trống.
+        </span>
+        <span *ngIf="name.errors?.['pattern']" class="text-danger">
+          {{label}} không đúng định dạng.
+        </span>
+    </div>
 </div>

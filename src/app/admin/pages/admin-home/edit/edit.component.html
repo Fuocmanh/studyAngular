@@ -1,0 +1,12 @@
+<div class="row d-flex justify-content-center my-5">
+    <form class="w-25">
+        <app-input idInput="username" name="username" [value]="item.username" label="Tên người dùng" (valueChange)="valueChangeTo($event,'username')"></app-input>
+        <app-input idInput="name" name="name" [value]="item.name" label="Họ & Tên" (valueChange)="valueChangeTo($event,'name')"></app-input>
+        <app-input idInput="email" name="email" [value]="item.email" label="Email" type="email" (valueChange)="valueChangeTo($event,'email')" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"></app-input>
+
+        <app-input idInput="phone" name="phone" [value]="item.phone" label="Số điện thoại" (valueChange)="valueChangeTo($event,'phone')" pattern="^[0-9]{10}$"></app-input>
+        <app-input idInput="address" name="address" [value]="item.address" label="Địa chỉ" (valueChange)="valueChangeTo($event,'address')"></app-input>
+        <app-input *ngIf="method" idInput="password" name="password" [value]="item.password " label="Mật khẩu" (valueChange)="valueChangeTo($event,'password')" type="password"></app-input>
+        <button class="btn btn-primary" (click)="storeOrUpdate()">Submit</button>
+    </form>
+</div>
